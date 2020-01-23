@@ -1,76 +1,36 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Javascript 101</title>
+        <title>RPS EXTREME</title>
         <meta charset="UTF-8"/>
+        <link rel="stylesheet" type="text/css" href="reset.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
-        <script>
-            let playerScore = 0;
-            let computerScore = 0;
-
-            function computerPlay(){
-                rand = Math.random();
-                if (rand <= 0.3){
-                    return "rock";
-                }else if (rand >=0.7){
-                    return "paper";
-                }else{
-                    return "scissors";
-                }
-            }
-
-            function playerSelection(){
-                let playerToss = prompt("Rock, Paper, Scissors?");
-                playerToss = playerToss.toLowerCase();
-
-                if (playerToss === "rock" || playerToss === "scissors" || playerToss ==="paper"){
-                    return playerToss;
-                }else{
-                    alert("Sorry, that's not an option. Please type rock, paper or scisors.");
-                }
-            }
-
-            function checkWinner(computer, player){
-                let winner = (computer === player) ? "draw" :
-                (computer === "rock" && player == "scissors") ? "computer" :
-                (computer === "paper" && player == "rock") ? "computer" :
-                (computer === "scissors" && player == "paper") ? "computer" :
-                "player";
-                return winner;
-            }
-
-            function play() {
-                let computer = computerPlay();
-                let player = playerSelection();
-                let winner = checkWinner(computer,player);
-                console.log("cpu: "+computer+" | player: "+player);
-                if (winner === "draw"){
-                    console.log("It's a draw!");
-                }else{
-                    console.log("The winner is "+winner+"!");
-                    if (winner === "player"){
-                        playerScore++;
-                    }else{
-                        computerScore++;
-                    }
-                    console.log("Score: computer "+computerScore+" | player "+playerScore);
-                }
-            }
-
-            for (i=0;i<5;i++){
-                play();
-                if (computerScore == 3 || playerScore == 3){
-                    break;
-                }
-            }
-            if (computerScore > playerScore) {
-                console.log("You are the grand loser");
-            }else if(computerScore == playerScore) {
-                console.log("You tied...");
-            }else{
-                console.log("- V I C T O R Y -");
-            }
-        </script>
+        <div class="header-container">
+            <hr>
+            <div class="mode-container">
+                <button id="hardmode" class="hardmode">Hard Mode</button>
+            </div>
+            <h1>Rock Paper Scissors</h1>
+            <hr>
+        </div>
+        <div class="grid-container">
+            <div id="player-score" class="grid-header item1">Player : 0</div>
+            <div class="grid-header item2">---</div>
+            <div id="computer-score" class="grid-header item3">Computer : 0</div>
+            <div class="grid-content item4"><img id="rock" class="selectable throw" src="res/rock.jpeg"></div>
+            <div class="grid-content item5"></div>
+            <div class="grid-content item6"><img id="comp-rock" class="throw" src="res/rock.jpeg"></div>
+            <div class="grid-content item7"><img id="paper" class="selectable throw" src="res/paper.png"></div>
+            <div class="grid-content item8"><p id="message">Select an object</p></div>
+            <div class="grid-content item9"><img id="comp-paper" class="throw" src="res/paper.png"></div>
+            <div class="grid-content item10"><img id="scissors" class="selectable throw" src="res/scissors.jpeg"></div>
+            <div class="grid-content item11"></div>
+            <div class="grid-content item12"><img id="comp-scissors"class="throw" src="res/scissors.jpeg"></div>
+        </div>
+        <div class="footer">
+        </div>
     </body>
+    <script src="scripts.js"></script>
 </html>

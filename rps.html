@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Javascript 101</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <script>
+            let playerScore = 0;
+            let computerScore = 0;
+
+            function computerPlay(){
+                rand = Math.random();
+                if (rand <= 0.3){
+                    return "rock";
+                }else if (rand >=0.7){
+                    return "paper";
+                }else{
+                    return "scissors";
+                }
+            }
+
+            function playerSelection(){
+                let playerToss = prompt("Rock, Paper, Scissors?");
+                playerToss = playerToss.toLowerCase();
+
+                if (playerToss === "rock" || playerToss === "scissors" || playerToss ==="paper"){
+                    return playerToss;
+                }else{
+                    alert("Sorry, that's not an option. Please type rock, paper or scisors.");
+                }
+            }
+
+            function checkWinner(computer, player){
+                let winner = (computer === player) ? "draw" :
+                (computer === "rock" && player == "scissors") ? "computer" :
+                (computer === "paper" && player == "rock") ? "computer" :
+                (computer === "scissors" && player == "paper") ? "computer" :
+                "player";
+                return winner;
+            }
+
+            function play() {
+                let computer = computerPlay();
+                let player = playerSelection();
+                let winner = checkWinner(computer,player);
+                console.log("cpu: "+computer+" | player: "+player);
+                if (winner === "draw"){
+                    console.log("It's a draw!");
+                }else{
+                    console.log("The winner is "+winner+"!");
+                    if (winner === "player"){
+                        playerScore++;
+                    }else{
+                        computerScore++;
+                    }
+                    console.log("Score: computer "+computerScore+" | player "+playerScore);
+                }
+            }
+
+            for (i=0;i<5;i++){
+                play();
+                if (computerScore == 3 || playerScore == 3){
+                    break;
+                }
+            }
+            if (computerScore > playerScore) {
+                console.log("You are the grand loser");
+            }else if(computerScore == playerScore) {
+                console.log("You tied...");
+            }else{
+                console.log("- V I C T O R Y -");
+            }
+        </script>
+    </body>
+</html>
