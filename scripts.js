@@ -5,21 +5,13 @@ let footerText = "";
 let hardMode = false;
 
 const timeoutTime = 1000;
-const message = document.querySelector("#message");
-const selectables = document.querySelectorAll(".selectable");
+const message = document.querySelector("#message"); // Message in the center block
+const selectables = document.querySelectorAll(".selectable"); // "throw" options
 const hardModeButton = document.querySelector("#hardmode");
 
+// --- Listeners ---
 hardModeButton.addEventListener('click',hardModeToggle);
-
-function hardModeToggle() {
-    if (!hardMode){
-        hardMode = true;
-        hardModeButton.classList.add("hardmode-selected");
-    }else{
-        hardMode = false;
-        hardModeButton.classList.remove("hardmode-selected");
-    }
-}
+addMouseListeners(selectables);
 
 function addMouseListeners(objects) {
     objects.forEach(select => select.addEventListener("click", play));
@@ -33,9 +25,27 @@ function removeMouseListeners(objects) {
     objects.forEach(select => select.removeEventListener("mouseout", mouseOut));
 }
 
+function hardModeToggle() {
+    if (!hardMode){
+        hardMode = true;
+        hardModeButton.classList.add("hardmode-selected");
+    }else{
+        hardMode = false;
+        hardModeButton.classList.remove("hardmode-selected");
+    }
+}
 
+function mouseOver (e) {
+    hover = toUpperCase(e.target.id);
+    message.textContent = hover;
+}
+
+function mouseOut (e) {
+    message.textContent = "Select an object";
+}
+
+// --- Logic Functions ---
 function computerPlay(player){
-    console.log(hardMode)
     if (!hardMode){
         rand = Math.random();
         if (rand <= 0.3){
@@ -65,15 +75,7 @@ function checkWinner(computer, player){
     return winner;
 }
 
-function mouseOver (e) {
-    hover = toUpperCase(e.target.id);
-    message.textContent = hover;
-}
-
-function mouseOut (e) {
-    message.textContent = "Select an object";
-}
-
+// --- Helper functions ---
 function toUpperCase(string){    
     return string.charAt(0).toUpperCase() + string.substring(1);
 }
@@ -83,7 +85,7 @@ function updateScore() {
     document.querySelector("#computer-score").textContent = "Computer : "+computerScore;
 }
 
-function prepareFooterText(computer, player, winner) {
+function prepareFooterText(computer, player, winner) { //Prepared with args from the play() function. Pushed to DOM from appendFooter()
     if (winner == "draw") {
         footerText = "Round "+round+": Draw || You both chose "+toUpperCase(computer);
     }else{
@@ -91,7 +93,7 @@ function prepareFooterText(computer, player, winner) {
     } 
 }
 
-function appendFooter() {
+function appendFooter() { //Footer appended seprately to prevent the footer div appearing too early.
     let newDiv = document.createElement("div");
     let newContent = document.createTextNode(footerText);
     newDiv.appendChild(newContent);
@@ -109,17 +111,17 @@ function reset(){
     appendFooter();
 }
 
+// --- Main function invoked by clicking on an option ---
 function play(e) {
     removeMouseListeners(selectables);
     const playerSelect = e.target.id;
-    const computerSelect = computerPlay(playerSelect);
+    const computerSelect = computerPlay(playerSelect); //playerSelect passed for hardmode
     this.classList.add('grow');
     const winner = checkWinner(computerSelect,playerSelect);
-
     prepareFooterText(computerSelect,playerSelect,winner);
-
     message.textContent = "You chose "+toUpperCase(playerSelect)+"!";
-    setTimeout(function() {
+
+    setTimeout(function() { //nested timeouts to give some breathing room between messages.
         document.querySelector(`#comp-${computerSelect}`).classList.add("grow");
         message.textContent = "Computer chose "+toUpperCase(computerSelect)+"!";
         if (winner == "draw") {
@@ -148,5 +150,3 @@ function play(e) {
         }
     }, timeoutTime);
 }
-
-addMouseListeners(selectables);
