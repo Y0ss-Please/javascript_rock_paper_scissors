@@ -35,7 +35,8 @@ function removeMouseListeners(objects) {
 
 
 function computerPlay(player){
-    if (!hardmode){
+    console.log(hardMode)
+    if (!hardMode){
         rand = Math.random();
         if (rand <= 0.3){
             return "rock";

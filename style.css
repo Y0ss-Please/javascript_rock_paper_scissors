@@ -1,6 +1,6 @@
 * {
-    background-color: #1f2923;
-    color: #ffffff;
+    background-color: #161616;
+    color: #e6e6e6;
     outline: 0;
 }
 
@@ -9,48 +9,49 @@ h1 {
     font-family: Verdana, sans-serif;
     font-size: 30px;
     font-weight: bold;
-    background-color: pink;
-    color: #1f2923;
+    background-color: #e6e6e6;
+    color: #161616;
     border-radius: 10px;
 }
 
 hr {
     border: 0;
-    border-top: 5px dashed #ffffff;
+    border-top: 5px dashed #e6e6e6;
     width: 98%;
 }
 
 .mode-container {
-    background-color: pink;
+    background-color: #e6e6e6;
     margin-top: 7px;
     margin-left: 15px;
     float: left;
 }
 
 .mode-container p {
-    background-color: pink;
+    background-color: #e6e6e6;
     font-family: Verdana, sans-serif;
     font-size: small;
     color: black;
 }
 
 .hardmode {
-    background-color: #1f2923;
+    background-color: #161616;
     margin-top:6px;
     padding: 3px;
     border: 0px;
     border-radius: 5px;
-    transition: all 0.5s;
+    transition: all 0.3s;
 }
 
 .hardmode:hover {
-    background-color: #3c5044;
+    background-color: #5e5e5e;
     box-shadow: 0px 0px 1px black;
 }
 
 .hardmode-selected {
     background-color: #cf0000;
-    box-shadow: 0px 0px 2px white;
+    scale: 1.09;
+    box-shadow: 1px 1px 2px black;
 }
 
 .header-container {
@@ -65,7 +66,7 @@ hr {
     display: grid;
     width: 80%;
     margin: 0 auto;
-    background-color: #405548;
+    background-color: #222222;
     grid-template-columns: 33.33% 33.33% 33.33%;
     grid-template-rows: auto;
     justify-items: center;
@@ -84,13 +85,13 @@ hr {
     font-size: 25px;
     width: 80%;
     text-align: center;
-    background-color: pink;
-    color: #1f2923;
+    background-color: #e6e6e6;
+    color: #161616;
 }
 
 .grid-content {
-    background-color: pink;
-    color: #1f2923;
+    background-color: #e6e6e6;
+    color: #161616;
 }
 
 .throw {
@@ -109,7 +110,7 @@ hr {
 }
 
 .item5 {
-    background-color: #405548;
+    background-color: #222222;
 }
 
 .item8 {
@@ -121,12 +122,12 @@ hr {
     margin: auto;
     font-family: Verdana, sans-serif;
     font-size: 25px;
-    background-color: pink;
-    color: #1f2923;
+    background-color: #e6e6e6;
+    color: #161616;
 }
 
 .item11 {
-    background-color: #405548;
+    background-color: #222222;
 }
 
 .footer div {
@@ -134,8 +135,8 @@ hr {
     font-size: 14px;
     width: 70%;
     text-align: center;
-    background-color: pink;
-    color: #1f2923;
+    background-color: #e6e6e6;
+    color: #161616;
     padding: 4px;
     margin: 15px auto;
     border-radius: 10px;
